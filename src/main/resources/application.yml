@@ -1,0 +1,45 @@
+server:
+  shutdown: graceful
+  forward-headers-strategy: ${SERVER_FORWARD_HEADERS_STRATEGY:none}
+spring:
+  application:
+    name: CaptionBridge
+  datasource:
+    url: jdbc:h2:file:./data/captionbridge
+    username: sa
+    password: ""
+  mvc:
+    problemdetails:
+      enabled: true
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+captionbridge:
+  public-base-url: ${CAPTIONBRIDGE_PUBLIC_BASE_URL:}
+  stt:
+    provider: ${CAPTIONBRIDGE_STT_PROVIDER:vosk}
+    vosk:
+      model-path: ${CAPTIONBRIDGE_STT_VOSK_MODEL_PATH:models/vosk-model-small-en-us-0.15}
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/captionbridge}
+    username: ${SPRING_DATASOURCE_USERNAME:captionbridge}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+---
+spring:
+  config:
+    activate:
+      on-profile: demo
+captionbridge:
+  stt:
+    provider: ${CAPTIONBRIDGE_STT_PROVIDER:mock}

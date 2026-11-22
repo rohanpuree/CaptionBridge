@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Host · CaptionBridge</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="host.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <span class="brand"><span class="brand-mark" aria-hidden="true">CC</span>CaptionBridge</span>
+    <span class="header-label">Host console</span>
+  </header>
+  <main class="host-layout">
+    <section class="panel host-controls" aria-labelledby="host-heading">
+      <h1 id="host-heading">Host a caption session</h1>
+      <form id="session-form">
+        <label for="title">Session title</label>
+        <div class="form-row">
+          <input id="title" name="title" maxlength="120" placeholder="e.g. Intro to Cybersecurity" required>
+          <button class="primary" id="start" type="submit">Start session</button>
+        </div>
+      </form>
+      <p id="host-error" class="message error" role="alert" hidden></p>
+      <div id="host-actions" hidden>
+        <p id="host-status" class="message" role="status"></p>
+        <label for="input-level">Microphone level</label>
+        <meter id="input-level" min="0" max="1" low="0.1" high="0.8" optimum="0.55" value="0"></meter>
+        <div class="button-row">
+          <button id="resume" type="button" hidden>Reconnect microphone</button>
+          <button id="end" type="button">End session</button>
+        </div>
+        <div id="transcript" class="transcript" hidden>
+          <h2>Transcript</h2>
+          <div class="button-row">
+            <button type="button" data-export="txt">Export TXT</button>
+            <button type="button" data-export="srt">Export SRT</button>
+            <button type="button" data-export="vtt">Export VTT</button>
+            <button type="button" class="danger" id="delete">Delete transcript</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="share" class="panel share" aria-labelledby="share-heading" hidden>
+      <h2 id="share-heading">Invite attendees</h2>
+      <img id="qr" width="176" height="176" alt="QR code for the attendee caption page">
+      <a id="join-link" target="_blank" rel="noopener noreferrer"></a>
+      <button type="button" id="copy">Copy join link</button>
+      <span id="share-status" class="share-status" role="status"></span>
+    </section>
+    <section class="panel preview" aria-labelledby="preview-heading">
+      <div class="panel-heading">
+        <h2 id="preview-heading">Caption preview</h2>
+        <span id="preview-status" class="connection" role="status"></span>
+      </div>
+      <div id="preview-scroll" class="caption-scroll" tabindex="0" aria-label="Caption preview">
+        <p id="preview-empty" class="empty">Start a session to see captions here.</p>
+        <div id="preview-finals" aria-live="polite" aria-relevant="additions"></div>
+        <p id="preview-partial" class="partial" hidden></p>
+      </div>
+      <button id="preview-jump" class="jump" type="button" hidden>Jump to live</button>
+    </section>
+  </main>
+</body>
+</html>

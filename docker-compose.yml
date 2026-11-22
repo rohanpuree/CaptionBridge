@@ -1,0 +1,15 @@
+services:
+  captionbridge:
+    build: .
+    ports:
+      - "${CAPTIONBRIDGE_PORT:-8080}:8080"
+    environment:
+      CAPTIONBRIDGE_STT_PROVIDER: ${CAPTIONBRIDGE_STT_PROVIDER:-mock}
+      CAPTIONBRIDGE_PUBLIC_BASE_URL: ${CAPTIONBRIDGE_PUBLIC_BASE_URL:-}
+      SERVER_FORWARD_HEADERS_STRATEGY: ${SERVER_FORWARD_HEADERS_STRATEGY:-none}
+    volumes:
+      - captionbridge-data:/app/data
+    stop_grace_period: 40s
+
+volumes:
+  captionbridge-data:

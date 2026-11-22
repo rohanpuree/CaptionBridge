@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live captions · CaptionBridge</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="join.js"></script>
+</head>
+<body class="attendee">
+  <header class="site-header">
+    <span class="brand"><span class="brand-mark" aria-hidden="true">CC</span>CaptionBridge</span>
+    <div class="button-row tools" role="group" aria-label="Caption display settings">
+      <button id="smaller" type="button" aria-label="Decrease caption size">A−</button>
+      <button id="larger" type="button" aria-label="Increase caption size">A+</button>
+      <button id="theme" type="button" aria-pressed="false">Dark mode</button>
+    </div>
+  </header>
+  <main class="attendee-layout">
+    <section class="panel reader" aria-labelledby="event-title">
+      <div class="reader-heading">
+        <h1 id="event-title">Live captions</h1>
+        <p id="caption-status" class="message" role="status">Connecting…</p>
+      </div>
+      <div id="caption-scroll" class="caption-scroll" tabindex="0" aria-label="Caption transcript">
+        <p id="caption-empty" class="empty">Waiting for captions…</p>
+        <div id="caption-finals" aria-live="polite" aria-relevant="additions"></div>
+        <p id="caption-partial" class="partial" hidden></p>
+      </div>
+      <button id="caption-jump" class="jump" type="button" hidden>Jump to live</button>
+    </section>
+  </main>
+</body>
+</html>
