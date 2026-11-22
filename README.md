@@ -6,7 +6,7 @@ The first version supports one live session, one microphone per session, and mul
 
 ## Run locally
 
-Install a **JDK 21** and use a current browser with AudioWorklet support. The Maven Wrapper downloads Maven and the build dependencies on its first run.
+Install a **JDK 21** and use a current browser with AudioWorklet support. On Linux and macOS, install `unzip` if it is missing. The Maven Wrapper downloads Maven and the build dependencies on its first run.
 
 ### Demo mode
 
